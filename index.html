@@ -1,0 +1,1069 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>萌图星球 - 每日二次元萌妹图库</title>
+<meta name="description" content="萌图星球 - 每日自动更新的二次元萌妹图片网站">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<style>
+/* ============ RESET ============ */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+    font-family:'PingFang SC','Hiragino Sans GB','Microsoft YaHei',-apple-system,sans-serif;
+    background:#f8f6ff;
+    color:#2d1b3e;
+    min-height:100vh;
+    overflow-x:hidden;
+    line-height:1.6;
+}
+
+/* ============ LIQUID GLASS BG ============ */
+.glass-bg{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
+.glass-orb{
+    position:absolute;border-radius:50%;filter:blur(80px);opacity:0.35;
+    animation:orbFloat 20s ease-in-out infinite alternate;
+}
+.glass-orb.o1{width:500px;height:500px;background:radial-gradient(circle,#ff6b9d88,#ff6b9d11);top:-10%;left:-5%;animation-duration:22s}
+.glass-orb.o2{width:400px;height:400px;background:radial-gradient(circle,#c471ed66,#c471ed11);top:30%;right:-8%;animation-duration:18s;animation-delay:-5s}
+.glass-orb.o3{width:350px;height:350px;background:radial-gradient(circle,#64b5f655,#64b5f611);bottom:-5%;left:20%;animation-duration:25s;animation-delay:-10s}
+.glass-orb.o4{width:300px;height:300px;background:radial-gradient(circle,#ff8fb344,#ff8fb311);top:60%;left:50%;animation-duration:20s;animation-delay:-8s}
+@keyframes orbFloat{
+    0%{transform:translate(0,0) scale(1)}
+    33%{transform:translate(40px,-30px) scale(1.08)}
+    66%{transform:translate(-20px,40px) scale(0.95)}
+    100%{transform:translate(30px,-20px) scale(1.03)}
+}
+
+/* ============ CONTAINER ============ */
+.container{max-width:1340px;margin:0 auto;padding:0 28px;position:relative;z-index:1}
+
+/* ============ HERO ============ */
+.hero{text-align:center;padding:48px 20px 12px;position:relative}
+.hero-glow{
+    position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+    width:300px;height:300px;border-radius:50%;
+    background:radial-gradient(circle,rgba(255,107,157,0.12),transparent 70%);
+    pointer-events:none;
+}
+.hero-icon{font-size:58px;display:block;margin-bottom:10px;position:relative;animation:heroFloat 4s ease-in-out infinite}
+@keyframes heroFloat{0%,100%{transform:translateY(0) rotate(-2deg)}50%{transform:translateY(-14px) rotate(2deg)}}
+.hero h1{
+    font-size:clamp(34px,8vw,58px);font-weight:900;
+    background:linear-gradient(135deg,#ff6b9d 0%,#c471ed 45%,#7c4dff 100%);
+    -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+    letter-spacing:5px;line-height:1.15;position:relative;
+}
+.hero h1::after{
+    content:'';position:absolute;bottom:-3px;left:50%;transform:translateX(-50%);
+    width:60%;height:3px;border-radius:2px;
+    background:linear-gradient(90deg,transparent,#ff6b9d66,transparent);
+}
+.hero-sub{
+    font-size:clamp(11px,2vw,14px);color:#9e8fb0;
+    letter-spacing:8px;margin-top:8px;font-weight:300;
+}
+
+.hero-pills{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:16px}
+.hero-pill{
+    font-size:11px;color:#b09ec4;letter-spacing:2px;
+    padding:5px 16px;border-radius:50px;
+    background:rgba(255,255,255,0.55);
+    backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+    border:1px solid rgba(255,255,255,0.7);
+    box-shadow:0 2px 12px rgba(0,0,0,0.03);
+}
+
+/* ============ TAGS (primary navigation) ============ */
+.section-label{
+    text-align:center;margin:30px 0 10px;
+    font-size:11px;color:#b09ec4;letter-spacing:6px;text-transform:uppercase;
+}
+.tag-row{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-bottom:10px}
+.tag-chip{
+    padding:8px 18px;border-radius:50px;
+    border:1px solid rgba(200,180,220,0.4);
+    background:rgba(255,255,255,0.4);
+    backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+    color:#7c6b94;cursor:pointer;
+    font-size:12px;letter-spacing:1px;font-weight:500;
+    transition:all .3s cubic-bezier(.4,0,.2,1);
+    white-space:nowrap;position:relative;overflow:hidden;
+    box-shadow:0 2px 12px rgba(0,0,0,0.03);
+}
+.tag-chip::after{
+    content:'';position:absolute;inset:0;border-radius:50px;
+    background:linear-gradient(135deg,#ff6b9d,#c471ed);
+    opacity:0;transition:opacity .3s;
+}
+.tag-chip:hover{border-color:#ff6b9d88;transform:translateY(-2px);box-shadow:0 4px 16px rgba(255,107,157,0.1)}
+.tag-chip.active{color:#fff;border-color:transparent;font-weight:600;box-shadow:0 6px 24px rgba(255,107,157,0.2)}
+.tag-chip.active::after{opacity:1}
+.tag-chip span{position:relative;z-index:1}
+
+/* Orientation filter */
+.orient-row{display:flex;gap:8px;justify-content:center;margin-bottom:18px;flex-wrap:wrap}
+.orient-chip{
+    padding:6px 16px;border-radius:50px;
+    border:1px solid rgba(150,200,220,0.5);
+    background:rgba(255,255,255,0.35);
+    backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+    color:#6b8fa0;cursor:pointer;
+    font-size:11px;letter-spacing:1px;font-weight:500;
+    transition:all .25s;white-space:nowrap;
+}
+.orient-chip:hover{border-color:#4da6cc88;transform:translateY(-1px)}
+.orient-chip.active{color:#fff;border-color:transparent;background:linear-gradient(135deg,#4da6cc,#3b8bb8);box-shadow:0 4px 16px rgba(77,166,204,0.3);font-weight:600}
+
+/* ============ DAILY STRIP ============ */
+.daily-strip{
+    display:flex;align-items:center;justify-content:center;gap:10px;
+    margin:10px auto 0;padding:8px 24px;
+    background:rgba(255,255,255,0.5);
+    backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+    border:1px solid rgba(255,255,255,0.75);
+    border-radius:50px;
+    max-width:400px;
+    font-size:11px;color:#9e8fb0;letter-spacing:2px;
+    box-shadow:0 4px 24px rgba(0,0,0,0.03);
+}
+.daily-strip .live{
+    width:6px;height:6px;background:#4caf50;border-radius:50%;
+    box-shadow:0 0 8px #4caf5088;
+    animation:pulse 2s ease-in-out infinite;
+}
+@keyframes pulse{0%,100%{opacity:.6;transform:scale(1)}50%{opacity:1;transform:scale(1.5)}}
+
+
+/* ============ IMAGE GRID ============ */
+.grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(260px,1fr));
+    gap:18px;padding:0 0 48px;
+    align-items:start;
+}
+.grid-card{
+    position:relative;border-radius:24px;overflow:hidden;
+    cursor:pointer;
+    background:rgba(255,255,255,0.5);
+    backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+    border:1px solid rgba(255,255,255,0.8);
+    box-shadow:0 4px 24px rgba(0,0,0,0.04);
+    transition:all .45s cubic-bezier(.4,0,.2,1);
+}
+.grid-card:hover{
+    transform:translateY(-8px) scale(1.012);
+    box-shadow:0 24px 64px rgba(255,107,157,0.12);
+    border-color:rgba(255,107,157,0.2);
+}
+/* ============ CARD SKELETON / LOADING ============ */
+.card-img-wrap{
+    position:relative;width:100%;aspect-ratio:3/4;overflow:hidden;
+    background:linear-gradient(135deg,#f5ecff,#fef0f8);
+}
+.card-skel{
+    position:absolute;inset:0;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    background:linear-gradient(135deg,rgba(245,235,255,0.85),rgba(255,240,250,0.7));
+    transition:opacity .4s ease;z-index:1;
+}
+.img-ready .card-skel,.img-err .card-skel{opacity:0;pointer-events:none}
+.skel-icon{font-size:28px;animation:skelBounce 1.5s ease-in-out infinite}
+.skel-dot{
+    display:block;width:24px;height:3px;margin-top:8px;border-radius:2px;
+    background:linear-gradient(90deg,#ff6b9d33,#c471ed66,#ff6b9d33);
+    background-size:200% 100%;
+    animation:skelDot 2s ease-in-out infinite;
+}
+@keyframes skelBounce{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(-5px) scale(1.08)}}
+@keyframes skelDot{0%{background-position:200% 0}100%{background-position:-200% 0}}
+.card-img{
+    position:absolute;inset:0;width:100%;height:100%;
+    object-fit:contain;
+    transition:opacity .3s ease,transform .7s cubic-bezier(.4,0,.2,1);
+    opacity:0;
+}
+.card-img.loaded{opacity:1}
+.img-err .card-img{opacity:0.12;filter:grayscale(1)}
+.grid-card:hover .card-img.loaded{transform:scale(1.04)}
+.card-shine{
+    position:absolute;inset:0;
+    background:linear-gradient(135deg,rgba(255,255,255,0.15),transparent 60%);
+    pointer-events:none;opacity:0;transition:opacity .4s;z-index:2;
+}
+.grid-card:hover .card-shine{opacity:1}
+
+/* card info footer */
+.card-footer{
+    padding:10px 14px 12px;
+    display:flex;align-items:center;gap:8px;
+    background:rgba(255,255,255,0.4);
+}
+.card-footer .cf-artist{
+    font-size:11px;color:#7c6b94;font-weight:500;
+    letter-spacing:1px;
+    flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+}
+.cf-dl{
+    width:28px;height:28px;border-radius:50%;
+    background:rgba(255,255,255,0.5);
+    border:1px solid rgba(200,180,220,0.3);
+    color:#b09ec4;cursor:pointer;
+    display:flex;align-items:center;justify-content:center;
+    font-size:12px;flex-shrink:0;
+    transition:all .3s;z-index:5;
+}
+.cf-dl:hover{background:linear-gradient(135deg,#ff6b9d,#c471ed);color:#fff;border-color:transparent}
+
+/* ============ INFINITE SCROLL ============ */
+.scroll-sentinel{height:10px;width:100%}
+.end-msg{
+    text-align:center;padding:20px 0 48px;
+    color:#b09ec4;font-size:12px;letter-spacing:3px;
+    display:none;
+}
+.end-msg.show{display:block}
+
+/* ============ SKELETON ============ */
+.skel-card{
+    border-radius:24px;overflow:hidden;
+    background:rgba(255,255,255,0.45);
+    backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+    border:1px solid rgba(255,255,255,0.7);
+    box-shadow:0 4px 24px rgba(0,0,0,0.03);
+}
+.skel-img{
+    width:100%;height:280px;
+    background:linear-gradient(90deg,rgba(200,180,220,0.12) 25%,rgba(220,200,240,0.2) 50%,rgba(200,180,220,0.12) 75%);
+    background-size:220% 100%;
+    animation:shimmer 1.6s ease-in-out infinite;
+}
+.skel-bar{
+    height:36px;margin:10px 14px;border-radius:8px;
+    background:linear-gradient(90deg,rgba(200,180,220,0.12) 25%,rgba(220,200,240,0.2) 50%,rgba(200,180,220,0.12) 75%);
+    background-size:220% 100%;
+    animation:shimmer 1.6s ease-in-out infinite;
+}
+@keyframes shimmer{0%{background-position:220% 0}100%{background-position:-220% 0}}
+
+/* ============ MODAL ============ */
+.modal-ov{
+    position:fixed;inset:0;z-index:1000;
+    background:rgba(240,236,250,0.92);
+    backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);
+    display:flex;align-items:center;justify-content:center;
+    opacity:0;pointer-events:none;
+    transition:opacity .35s ease;
+}
+.modal-ov.open{opacity:1;pointer-events:all}
+.modal-wrap{
+    position:relative;
+    max-width:92vw;max-height:92vh;border-radius:28px;overflow:hidden;
+    background:rgba(255,255,255,0.55);
+    backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);
+    border:1px solid rgba(255,255,255,0.85);
+    box-shadow:0 32px 96px rgba(60,30,90,0.15);
+    transform:scale(0.92);
+    transition:transform .4s cubic-bezier(.4,0,.2,1);
+}
+.modal-ov.open .modal-wrap{transform:scale(1)}
+.modal-img{display:block;max-width:92vw;max-height:88vh;object-fit:contain;border-radius:28px;transition:opacity .3s ease}
+.modal-btn{
+    position:absolute;z-index:10;
+    width:48px;height:48px;border-radius:50%;border:none;cursor:pointer;
+    background:rgba(255,255,255,0.6);
+    backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+    border:1px solid rgba(255,255,255,0.8);
+    color:#7c6b94;font-size:18px;
+    display:flex;align-items:center;justify-content:center;
+    transition:all .3s;box-shadow:0 4px 20px rgba(0,0,0,0.06);
+}
+.modal-btn:hover{background:rgba(255,255,255,0.85);color:#ff6b9d;transform:scale(1.08)}
+.mclose{top:16px;right:16px}
+.mprev{top:50%;left:16px;transform:translateY(-50%)}
+.mnext{top:50%;right:16px;transform:translateY(-50%)}
+.modal-dl-btn{
+    position:absolute;bottom:14px;right:22px;z-index:10;
+    padding:10px 22px;border-radius:50px;border:none;cursor:pointer;
+    background:linear-gradient(135deg,#ff6b9d,#c471ed);
+    color:#fff;font-size:12px;font-weight:600;letter-spacing:2px;
+    box-shadow:0 6px 24px rgba(255,107,157,0.3);
+    transition:all .3s;display:flex;align-items:center;gap:6px;
+    text-decoration:none;
+}
+.modal-dl-btn:hover{transform:translateY(-2px);box-shadow:0 10px 36px rgba(255,107,157,0.45)}
+
+/* ============ FOOTER ============ */
+.footer{
+    text-align:center;padding:36px 20px 48px;
+    border-top:1px solid rgba(200,180,220,0.2);
+    margin-top:20px;
+}
+.footer .copy{font-size:11px;color:#b09ec4;letter-spacing:3px}
+.footer .copy .fh{color:#ff6b9d;display:inline-block;animation:hb 1.6s ease-in-out infinite}
+@keyframes hb{0%,100%{transform:scale(1)}20%{transform:scale(1.3)}40%{transform:scale(1)}55%{transform:scale(1.2)}70%{transform:scale(1)}}
+
+/* ============ TOAST ============ */
+.toast{
+    position:fixed;bottom:32px;left:50%;z-index:2000;
+    transform:translateX(-50%) translateY(120px);
+    background:rgba(255,255,255,0.75);
+    backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);
+    border:1px solid rgba(255,255,255,0.85);
+    color:#5a4570;padding:12px 32px;border-radius:50px;
+    font-size:13px;letter-spacing:2px;
+    box-shadow:0 8px 40px rgba(0,0,0,0.06);
+    transition:transform .45s cubic-bezier(.4,0,.2,1);
+    pointer-events:none;
+}
+.toast.show{transform:translateX(-50%) translateY(0)}
+
+/* ============ NAV STICKY ============ */
+.nav-sticky{
+    position:sticky;top:0;z-index:99;
+    background:rgba(248,246,255,0.92);
+    backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+    padding-top:10px;padding-bottom:6px;
+    border-bottom:1px solid rgba(200,180,220,0.18);
+    margin:0 -28px;padding-left:28px;padding-right:28px;
+}
+@media(max-width:768px){
+    .nav-sticky{margin:0 -16px;padding-left:16px;padding-right:16px;}
+}
+
+/* ============ SCROLL-TOP ============ */
+.scroll-top{
+    position:fixed;bottom:28px;right:28px;z-index:100;
+    width:44px;height:44px;border-radius:50%;
+    background:rgba(255,255,255,0.6);
+    backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+    border:1px solid rgba(255,255,255,0.8);
+    color:#b09ec4;cursor:pointer;
+    display:flex;align-items:center;justify-content:center;
+    font-size:16px;transition:all .3s;
+    opacity:0;pointer-events:none;
+    box-shadow:0 4px 20px rgba(0,0,0,0.05);
+}
+.scroll-top.visible{opacity:1;pointer-events:all}
+.scroll-top:hover{background:rgba(255,255,255,0.9);color:#ff6b9d;transform:translateY(-4px)}
+
+/* ============ ERROR ============ */
+.err-block{grid-column:1/-1;text-align:center;padding:60px 20px;color:#b09ec4}
+.err-block .eicon{font-size:48px;display:block;margin-bottom:12px}
+.err-block .etext{font-size:14px;margin-bottom:18px;letter-spacing:2px}
+.err-block button{
+    padding:12px 30px;border-radius:50px;border:none;
+    background:linear-gradient(135deg,#ff6b9d,#c471ed);color:#fff;cursor:pointer;
+    font-size:13px;font-weight:600;letter-spacing:2px;
+    box-shadow:0 6px 24px rgba(255,107,157,0.2);
+}
+
+/* ============ RESPONSIVE ============ */
+@media(max-width:768px){
+    .hero{padding:36px 14px 8px}
+    .hero-icon{font-size:44px}
+    .container{padding:0 16px}
+    .grid{grid-template-columns:repeat(auto-fill,minmax(155px,1fr));gap:12px}
+    .skel-img{height:200px}
+    .tag-chip{padding:7px 14px;font-size:11px}
+    .daily-strip{font-size:10px;padding:7px 16px}
+    .glass-orb{filter:blur(60px);opacity:0.22}
+    .section-label{margin:24px 0 8px}
+}
+@media(max-width:480px){
+    .hero h1{font-size:26px;letter-spacing:3px}
+    .grid{grid-template-columns:repeat(2,1fr);gap:8px}
+    .grid-card{border-radius:16px}
+    .card-footer{padding:8px 10px}
+    .card-footer .cf-artist{font-size:10px}
+    .hero-sub{letter-spacing:4px;font-size:10px}
+    .tag-row{gap:5px}
+    .tag-chip{padding:6px 11px;font-size:10px}
+    .orient-chip{padding:5px 12px;font-size:10px}
+}
+
+/* ============ EMPTY STATE ============ */
+.empty-state{
+    grid-column:1/-1;text-align:center;padding:80px 20px;
+}
+.empty-state .es-icon{font-size:64px;display:block;margin-bottom:16px;animation:heroFloat 3s ease-in-out infinite}
+.empty-state h3{font-size:18px;color:#7c6b94;margin-bottom:8px;letter-spacing:2px}
+.empty-state p{font-size:13px;color:#b09ec4;letter-spacing:1px}
+</style>
+</head>
+<body>
+
+<!-- Liquid Glass Background -->
+<div class="glass-bg">
+    <div class="glass-orb o1"></div>
+    <div class="glass-orb o2"></div>
+    <div class="glass-orb o3"></div>
+    <div class="glass-orb o4"></div>
+</div>
+
+<div class="toast" id="toast"></div>
+<button class="scroll-top" id="scrollTop">↑</button>
+
+<div class="container">
+    <!-- Hero -->
+    <section class="hero">
+        <div class="hero-glow"></div>
+        <span class="hero-icon">🪐</span>
+        <h1>萌图星球</h1>
+        <p class="hero-sub">M O E &nbsp; P L A N E T</p>
+        <div class="hero-pills">
+            <span class="hero-pill">✨ 7.8万精选</span>
+            <span class="hero-pill">🎯 精准标签</span>
+            <span class="hero-pill">📱 横竖皆宜</span>
+        </div>
+    </section>
+
+    <!-- Daily -->
+    <div class="daily-strip">
+        <span class="live"></span>
+        <span id="dailyText">今日萌图 · 实时更新</span>
+    </div>
+
+    <!-- Styles (仅3个) -->
+    <div class="section-label" id="styleLabel">✦ 选 择 风 格 ✦</div>
+    <div class="tag-row" id="styleRow"></div>
+
+    <!-- Tags (精选标签，全部保留) -->
+    <div class="section-label">✦ 精 选 标 签 ✦</div>
+    <div class="tag-row" id="tagRow"></div>
+
+    <!-- Orientation filter -->
+    <div class="orient-row" id="orientRow">
+        <button class="orient-chip active" data-ori="all">📐 全部比例</button>
+        <button class="orient-chip" data-ori="portrait">📱 竖屏</button>
+        <button class="orient-chip" data-ori="landscape">🖥️ 横屏</button>
+    </div>
+
+
+    <!-- Grid -->
+    <div class="grid" id="imageGrid"></div>
+
+    <!-- Infinite scroll sentinel -->
+    <div class="scroll-sentinel" id="scrollSentinel"></div>
+    <div class="end-msg" id="endMsg">✨ 已经到底啦，换个标签看看吧~ ✨</div>
+</div>
+
+<!-- Modal -->
+<div class="modal-ov" id="modalOv">
+    <button class="modal-btn mclose" id="mClose">✕</button>
+    <button class="modal-btn mprev" id="mPrev">◀</button>
+    <button class="modal-btn mnext" id="mNext">▶</button>
+    <a class="modal-dl-btn" id="mDownload" href="#" download>⬇ 下载原图</a>
+    <div class="modal-wrap">
+        <img class="modal-img" id="mImg" src="" alt="">
+    </div>
+</div>
+
+<!-- Footer -->
+<footer class="footer">
+    <p class="copy">Made with <span class="fh">♥</span> · 萌图星球 &copy; 2026</p>
+</footer>
+
+<script>
+(function(){
+    // ===== CONFIG =====
+    const SK = 'mp_v13'; const DK = 'mp_d_v13';
+    const PAGE_SIZE = 20;
+    const MAX_CONCURRENT = 3;
+
+    // 风格（仅3个，nekos.best 实时接口）
+    const STYLES = [
+        {label:'日常萌妹', emoji:'🌸', cat:'waifu'},
+        {label:'猫耳少女', emoji:'🐱', cat:'neko'},
+        {label:'狐耳少女', emoji:'🦊', cat:'kitsune'},
+    ];
+
+    // 精选标签（全部保留，Safebooru 精准数据）
+    const TAGS = [
+        {label:'全部',   emoji:'✨', file:'all'},
+        {label:'白丝',   emoji:'🤍', file:'thighhighs'},
+        {label:'黑丝',   emoji:'🖤', file:'black_legwear'},
+        {label:'肉丝',   emoji:'💛', file:'pantyhose'},
+        {label:'猫娘',   emoji:'🐾', file:'cat_ears'},
+        {label:'女仆',   emoji:'👗', file:'maid'},
+        {label:'JK制服', emoji:'🎒', file:'school_uniform'},
+        {label:'和服',   emoji:'👘', file:'kimono'},
+        {label:'泳装',   emoji:'🩱', file:'swimsuit'},
+        {label:'水手服', emoji:'⚓', file:'serafuku'},
+        {label:'双马尾', emoji:'🎀', file:'twintails'},
+        {label:'眼镜娘', emoji:'👓', file:'glasses'},
+    ];
+
+    // ===== STATE =====
+    let curTag = 0;            // current active tag index (0 = 全部)
+    let allItems = [];          // full dataset for current tag
+    let visible = [];           // currently rendered subset
+    let pageNow = 0;            // current page
+    let flat = [];              // for modal navigation (all visible items)
+    let midx = -1;
+    let loading = false;
+    let observer = null;
+    let loadQueue = [], activeLoads = 0;
+    let tagCache = {};          // cached fetched data
+    let chunkTotal = 0;         // "全部"模式总分片数
+    let chunkLoaded = 0;        // "全部"模式已加载分片数
+    let curOrient = 'all';      // 当前方向过滤: all | portrait | landscape
+    let orientFiltered = [];    // 方向过滤后的数据集
+    let curStyle = -1;         // 当前风格索引 (-1=未选中)
+    let mode = 'tag';            // 'tag' | 'style'
+
+    // ===== DOM =====
+    const $styleRow = document.getElementById('styleRow');
+    const $tags     = document.getElementById('tagRow');
+    const $orow     = document.getElementById('orientRow');
+    const $grid     = document.getElementById('imageGrid');
+    const $sentinel = document.getElementById('scrollSentinel');
+    const $endMsg   = document.getElementById('endMsg');
+    const $mov   = document.getElementById('modalOv');
+    const $mimg  = document.getElementById('mImg');
+    const $mdl   = document.getElementById('mDownload');
+    const $mc    = document.getElementById('mClose');
+    const $mp    = document.getElementById('mPrev');
+    const $mn    = document.getElementById('mNext');
+    const $toast = document.getElementById('toast');
+    const $st    = document.getElementById('scrollTop');
+    const $dt    = document.getElementById('dailyText');
+
+    // ===== SHUFFLE =====
+    function shuffle(arr){
+        const a = [...arr];
+        for(let i=a.length-1;i>0;i--){
+            const j=Math.floor(Math.random()*(i+1));
+            [a[i],a[j]]=[a[j],a[i]];
+        }
+        return a;
+    }
+
+    // ===== INIT =====
+    function init(){
+        renderStyles(); renderTags(); updDaily();
+        selectTag(0);
+        bind();
+    }
+
+    // ===== TAGS UI =====
+    function renderTags(){
+        $tags.innerHTML = TAGS.map((t,i)=>
+            `<button class="tag-chip${i===curTag?' active':''}" data-ti="${i}"><span>${t.emoji} ${t.label}</span></button>`
+        ).join('');
+    }
+
+    function highlightTag(i){
+        $tags.querySelectorAll('.tag-chip').forEach((t,j)=>t.classList.toggle('active',j===i));
+    }
+
+    // ===== STYLES UI =====
+    function renderStyles(){
+        $styleRow.innerHTML = STYLES.map((s,i)=>
+            `<button class="tag-chip${i===curStyle?' active':''}" data-si="${i}"><span>${s.emoji} ${s.label}</span></button>`
+        ).join('');
+    }
+    function highlightStyle(i){
+        $styleRow.querySelectorAll('.tag-chip').forEach((t,j)=>t.classList.toggle('active',j===i));
+    }
+
+    async function selectStyle(i){
+        if(loading) return;
+        curStyle = i; mode = 'style';
+        // 不重置 curTag，风格和标签可以同时保持高亮
+        highlightStyle(i);
+        const cat = STYLES[i].cat;
+        loading = true;
+        showSkel();
+        try{
+            const r = await fetch(`https://nekos.best/api/v2/${cat}?amount=20`);
+            if(!r.ok) throw 0;
+            const data = await r.json();
+            allItems = data.results.map(r=>({
+                t:r.url, u:r.url,
+                w:r.dimensions?.width||0, h:r.dimensions?.height||0,
+                a:r.artist_name||'未知画师',
+            }));
+            applyOrient();
+            toast(`🌸 「${STYLES[i].label}」`);
+        }catch(e){
+            showErr('风格加载失败，请稍后重试~');
+        }finally{ loading=false; }
+    }
+
+    // ===== LOAD MORE (style mode) =====
+    async function loadMoreStyle(){
+        if(loading) return;
+        const cat = STYLES[curStyle].cat;
+        loading = true;
+        try{
+            const r = await fetch(`https://nekos.best/api/v2/${cat}?amount=20`);
+            if(!r.ok) throw 0;
+            const data = await r.json();
+            const newItems = data.results.map(r=>({
+                t:r.url, u:r.url,
+                w:r.dimensions?.width||0, h:r.dimensions?.height||0,
+                a:r.artist_name||'未知画师',
+            }));
+            allItems = [...allItems, ...newItems];
+            // Re-apply orient filter and append to grid
+            const oldLen = orientFiltered.length;
+            applyOrientSilent();
+            const added = orientFiltered.slice(oldLen);
+            if(added.length){
+                flat = [...flat, ...added];
+                appendCards(added, oldLen);
+            }
+        }catch(e){ /* silently fail, will retry on next scroll */ }
+        finally{ loading=false; updateLoadMore(); }
+    }
+
+    function appendCards(batch, startIdx){
+        const frag = document.createDocumentFragment();
+        const tmp = document.createElement('div');
+        tmp.innerHTML = batch.map((it,i)=>cardHTML(it, startIdx+i)).join('');
+        while(tmp.firstChild) frag.appendChild(tmp.firstChild);
+        frag.querySelectorAll('.grid-card').forEach(c=>{
+            c.addEventListener('click',(e)=>{ if(e.target.closest('.cf-dl')) return; openM(parseInt(c.dataset.i)); });
+        });
+        frag.querySelectorAll('.cf-dl').forEach(btn=>{
+            btn.addEventListener('click',(e)=>{ e.stopPropagation(); downloadImg(btn.dataset.dl); });
+        });
+        $grid.appendChild(frag);
+        setupObserver();
+        const newCards = $grid.querySelectorAll('.grid-card:not([data-observed])');
+        newCards.forEach(c=>{ c.dataset.observed='1'; observer.observe(c); });
+    }
+
+    // ===== DAILY =====
+    function updDaily(){
+        const d=new Date();
+        const ds=`${d.getFullYear()}/${(d.getMonth()+1+'').padStart(2,'0')}/${(d.getDate()+'').padStart(2,'0')}`;
+        const w=['日','一','二','三','四','五','六'];
+        $dt.textContent=`${ds} · 星期${w[d.getDay()]} · LIVE`;
+    }
+
+    // ===== TAG SELECTION =====
+    async function selectTag(i, reshuffle){
+        if(loading) return;
+        curTag = i; mode = 'tag';
+        // 注意：不重置 curStyle，风格和标签可以同时高亮
+        highlightTag(i);
+        const tag = TAGS[i];
+        loading = true;
+        showSkel();
+
+        try{
+            if(i === 0){
+                // 「全部」模式：分片加载
+                await loadAllChunks(reshuffle);
+            } else {
+                // 其他标签：单文件加载
+                if(!reshuffle && tagCache[tag.file]){
+                    allItems = tagCache[tag.file];
+                } else {
+                    const r = await fetch(`data/${tag.file}.json?t=${Date.now()}`);
+                    if(!r.ok) throw 0;
+                    allItems = await r.json();
+                }
+                if(reshuffle || !tagCache[tag.file]){
+                    allItems = shuffle(allItems);
+                }
+                tagCache[tag.file] = allItems;
+            }
+
+            // Apply orientation filter
+            applyOrient();
+            toast(`🏷️ 「${tag.label}」· ${orientFiltered.length}张`);
+
+        }catch(e){
+            showErr('数据加载失败，请稍后重试~');
+        }finally{ loading=false; }
+    }
+
+    // ===== ORIENTATION FILTER =====
+    function applyOrient(){
+        orientFiltered = filterByOrient(allItems);
+        // Reset pagination
+        pageNow = 1;
+        visible = orientFiltered.slice(0, PAGE_SIZE);
+        renderVisible();
+    }
+
+    function applyOrientSilent(){
+        // Update filtered data without resetting view (for background chunk loads)
+        orientFiltered = filterByOrient(allItems);
+    }
+
+    function filterByOrient(items){
+        if(curOrient === 'all') return [...items];
+        if(curOrient === 'landscape') return items.filter(it => (it.w || 0) > (it.h || 0));
+        if(curOrient === 'portrait') return items.filter(it => (it.h || 0) >= (it.w || 0));
+        return [...items];
+    }
+
+    function setOrient(ori){
+        if(curOrient === ori) return;
+        curOrient = ori;
+        // Update UI
+        $orow.querySelectorAll('.orient-chip').forEach(b=>b.classList.toggle('active', b.dataset.ori===ori));
+        // Re-filter and re-render
+        applyOrient();
+        const labels = {all:'全部比例', portrait:'竖屏', landscape:'横屏'};
+        toast(`📐 ${labels[ori]} · ${orientFiltered.length}张`);
+    }
+
+    // ===== CHUNKED LOAD FOR 「全部」=====
+    async function loadAllChunks(reshuffle){
+        // Check cache
+        const cacheKey = 'all_chunked';
+        if(!reshuffle && tagCache[cacheKey]){
+            allItems = tagCache[cacheKey];
+            return;
+        }
+
+        // Load index first
+        let idxRes;
+        try{ idxRes = await fetch(`data/index.json?t=${Date.now()}`); }
+        catch(e){ idxRes = null; }
+
+        chunkTotal = 5; // default fallback
+        if(idxRes && idxRes.ok){
+            const idx = await idxRes.json();
+            chunkTotal = idx.chunks || 5;
+        }
+
+        // Load chunk 0 immediately
+        const r0 = await fetch(`data/all_0.json?t=${Date.now()}`);
+        if(!r0.ok) throw 0;
+        allItems = await r0.json();
+        chunkLoaded = 1;
+
+        // Async load remaining chunks in background
+        if(chunkTotal > 1){
+            loadRemainingChunks();
+        }
+
+        // Shuffle
+        allItems = shuffle(allItems);
+        tagCache[cacheKey] = allItems;
+    }
+
+    async function loadRemainingChunks(){
+        for(let c = 1; c < chunkTotal; c++){
+            try{
+                const r = await fetch(`data/all_${c}.json?t=${Date.now()}`);
+                if(!r.ok) continue;
+                const chunk = await r.json();
+                allItems = [...allItems, ...chunk];
+                chunkLoaded = c + 1;
+            }catch(e){
+                // silently continue
+            }
+        }
+        // Final shuffle after all chunks loaded
+        allItems = shuffle(allItems);
+        tagCache['all_chunked'] = allItems;
+        // Re-apply orientation filter silently (no view reset)
+        applyOrientSilent();
+        updateLoadMore();
+    }
+
+    // ===== LOAD MORE =====
+    function loadMore(){
+        if(mode === 'style'){ loadMoreStyle(); return; }
+        if(loading) return;
+        const remaining = orientFiltered.length - (pageNow * PAGE_SIZE);
+        if(remaining <= 0 && !(curTag === 0 && chunkLoaded < chunkTotal)){
+            updateLoadMore();
+            return;
+        }
+        pageNow++;
+        const start = (pageNow-1) * PAGE_SIZE;
+        const batch = orientFiltered.slice(start, start + PAGE_SIZE);
+        if(!batch.length){ pageNow--; updateLoadMore(); return; }
+
+        flat = [...flat, ...batch];
+        const frag = document.createDocumentFragment();
+        const tmp = document.createElement('div');
+        tmp.innerHTML = batch.map((it,i)=>({
+            idx: start + i,
+            html: cardHTML(it, start + i)
+        })).map(x=>x.html).join('');
+
+        while(tmp.firstChild) frag.appendChild(tmp.firstChild);
+
+        // Bind events to new cards
+        frag.querySelectorAll('.grid-card').forEach(c=>{
+            c.addEventListener('click',(e)=>{
+                if(e.target.closest('.cf-dl')) return;
+                openM(parseInt(c.dataset.i));
+            });
+        });
+        frag.querySelectorAll('.cf-dl').forEach(btn=>{
+            btn.addEventListener('click',(e)=>{
+                e.stopPropagation();
+                downloadImg(btn.dataset.dl);
+            });
+        });
+
+        $grid.appendChild(frag);
+
+        // Observe new cards for lazy loading
+        setupObserver();
+        const newCards = $grid.querySelectorAll('.grid-card:not([data-observed])');
+        newCards.forEach(c=>{
+            c.dataset.observed = '1';
+            observer.observe(c);
+        });
+
+        updateLoadMore();
+        if(pageNow === 2){
+            // After first load-more, start loading visible cards
+            pumpAllVisible();
+        }
+    }
+
+    function updateLoadMore(){
+        if(mode === 'style'){ $endMsg.classList.remove('show'); return; }
+        const remaining = orientFiltered.length - (pageNow * PAGE_SIZE);
+        if(curTag === 0 && chunkLoaded < chunkTotal){
+            $endMsg.classList.remove('show');
+        } else if(remaining <= 0){
+            $endMsg.classList.add('show');
+        } else {
+            $endMsg.classList.remove('show');
+        }
+    }
+
+    // ===== CARD HTML =====
+    function cardHTML(it, i){
+        return `<div class="grid-card" data-i="${i}" data-src="${it.t}" data-orig="${it.u}">
+            <div class="card-img-wrap">
+                <div class="card-skel">
+                    <span class="skel-icon">🌸</span>
+                    <span class="skel-dot"></span>
+                </div>
+                <img class="card-img" alt="萌图${i+1}" loading="lazy">
+            </div>
+            <div class="card-shine"></div>
+            <div class="card-footer">
+                <span class="cf-artist">${it.a||'未知画师'}</span>
+                <button class="cf-dl" data-dl="${it.u}" title="下载图片">⬇</button>
+            </div>
+        </div>`;
+    }
+
+    // ===== RENDER VISIBLE =====
+    function renderVisible(){
+        loadQueue = []; activeLoads = 0;
+        flat = [...visible];
+
+        $grid.innerHTML = visible.map((it,i)=>cardHTML(it,i)).join('');
+
+        // Bind events
+        $grid.querySelectorAll('.grid-card').forEach(c=>{
+            c.addEventListener('click',(e)=>{
+                if(e.target.closest('.cf-dl')) return;
+                openM(parseInt(c.dataset.i));
+            });
+        });
+        $grid.querySelectorAll('.cf-dl').forEach(btn=>{
+            btn.addEventListener('click',(e)=>{
+                e.stopPropagation();
+                downloadImg(btn.dataset.dl);
+            });
+        });
+
+        updateLoadMore();
+
+        // Setup infinite scroll sentinel
+        setupSentinel();
+
+        // Lazy load first batch
+        setupObserver();
+        const allCards = $grid.querySelectorAll('.grid-card');
+        const firstBatch = Math.min(MAX_CONCURRENT * 2, allCards.length);
+        for(let i=0;i<firstBatch;i++){ allCards[i].dataset.observed='1'; enqueueLoad(allCards[i]); }
+        for(let i=firstBatch;i<allCards.length;i++){ allCards[i].dataset.observed='1'; observer.observe(allCards[i]); }
+
+        window.scrollTo({top:0,behavior:'smooth'});
+    }
+
+    // ===== LAZY LOAD QUEUE =====
+    function enqueueLoad(card){
+        loadQueue.push(card);
+        pumpQueue();
+    }
+    function pumpQueue(){
+        while(activeLoads < MAX_CONCURRENT && loadQueue.length > 0){
+            const card = loadQueue.shift();
+            if(!card || card.dataset.loaded === '1') continue;
+            card.dataset.loaded = '1';
+            activeLoads++;
+            loadOne(card);
+        }
+    }
+    function loadOne(card){
+        const src = card.dataset.src;
+        if(!src){ activeLoads--; pumpQueue(); return; }
+        const img = card.querySelector('.card-img');
+        if(!img){ activeLoads--; pumpQueue(); return; }
+        img.src = src;
+        img.onload = ()=>{
+            img.classList.add('loaded');
+            card.classList.add('img-ready');
+            activeLoads--;
+            pumpQueue();
+        };
+        img.onerror = ()=>{
+            card.classList.add('img-err');
+            const skelIcon = card.querySelector('.skel-icon');
+            if(skelIcon) skelIcon.textContent = '💔';
+            activeLoads--;
+            pumpQueue();
+        };
+    }
+    function pumpAllVisible(){
+        const cards = $grid.querySelectorAll('.grid-card:not([data-loaded])');
+        cards.forEach(c=>{
+            if(c.dataset.loaded !== '1'){
+                observer.unobserve(c);
+                enqueueLoad(c);
+            }
+        });
+    }
+
+    function setupObserver(){
+        if(observer) observer.disconnect();
+        observer = new IntersectionObserver((entries)=>{
+            entries.forEach(e=>{
+                if(!e.isIntersecting) return;
+                const card = e.target;
+                observer.unobserve(card);
+                if(card.dataset.loaded !== '1') enqueueLoad(card);
+            });
+        },{ rootMargin: '400px 0px' });
+    }
+
+    let sentinelObserver = null;
+    function setupSentinel(){
+        if(sentinelObserver) sentinelObserver.disconnect();
+        sentinelObserver = new IntersectionObserver((entries)=>{
+            if(entries[0].isIntersecting && !loading){
+                if(mode === 'style'){ loadMore(); return; }
+                const remaining = orientFiltered.length - (pageNow * PAGE_SIZE);
+                if(remaining > 0 || (curTag === 0 && chunkLoaded < chunkTotal)){
+                    loadMore();
+                }
+            }
+        }, { rootMargin: '600px 0px' });
+        sentinelObserver.observe($sentinel);
+    }
+
+    // ===== SKELETON / ERROR =====
+    function showSkel(){
+        $endMsg.classList.remove('show');
+        const n = window.innerWidth < 480 ? 6 : 8;
+        $grid.innerHTML = Array(n).fill(0).map(()=>
+            '<div class="skel-card"><div class="skel-img"></div><div class="skel-bar"></div></div>'
+        ).join('');
+    }
+    function showErr(msg){
+        $endMsg.classList.remove('show');
+        $grid.innerHTML = `<div class="err-block"><span class="eicon">😿</span><p class="etext">${msg}</p><button onclick="location.reload()">🔄 重新加载</button></div>`;
+    }
+
+    // ===== MODAL =====
+    function openM(i){
+        if(i<0||i>=flat.length) return;
+        midx=i; const it=flat[i];
+        $mimg.style.opacity='0';
+        $mimg.src=it.u;
+        $mimg.onload=()=>{ $mimg.style.opacity='1'; };
+        $mdl.href = it.u;
+        $mov.classList.add('open'); document.body.style.overflow='hidden';
+    }
+    function closeM(){ $mov.classList.remove('open'); document.body.style.overflow=''; midx=-1; }
+    function navM(d){ if(!flat.length) return; let n=midx+d; if(n<0)n=flat.length-1; if(n>=flat.length)n=0; openM(n); }
+
+    // ===== DOWNLOAD =====
+    async function downloadImg(url){
+        toast('⬇ 正在准备下载...');
+        try{
+            const r = await fetch(url, {mode:'cors'});
+            const blob = await r.blob();
+            const a = document.createElement('a');
+            a.href = URL.createObjectURL(blob);
+            const ext = url.split('.').pop().split('?')[0]||'png';
+            a.download = '萌图星球_'+Date.now()+'.'+ext;
+            document.body.appendChild(a); a.click(); document.body.removeChild(a);
+            URL.revokeObjectURL(a.href);
+            toast('✅ 下载完成！');
+        }catch(e){
+            const a = document.createElement('a');
+            a.href = url; a.target = '_blank'; a.rel = 'noopener';
+            const ext = url.split('.').pop().split('?')[0]||'png';
+            a.download = '萌图星球_'+Date.now()+'.'+ext;
+            document.body.appendChild(a); a.click(); document.body.removeChild(a);
+            toast('✅ 已在新标签打开原图，右键保存即可');
+        }
+    }
+
+    // ===== EVENTS =====
+    function bind(){
+        $styleRow.addEventListener('click',e=>{
+            const c=e.target.closest('.tag-chip');
+            if(!c) return;
+            const si=parseInt(c.dataset.si);
+            if(si!==curStyle) selectStyle(si);
+        });
+        $tags.addEventListener('click',e=>{
+            const c=e.target.closest('.tag-chip');
+            if(!c) return;
+            const ti=parseInt(c.dataset.ti);
+            if(ti!==curTag) selectTag(ti);
+        });
+        $orow.addEventListener('click',e=>{
+            const c=e.target.closest('.orient-chip');
+            if(!c) return;
+            setOrient(c.dataset.ori);
+        });
+        $mc.addEventListener('click',closeM);
+        $mdl.addEventListener('click',(e)=>{
+            e.preventDefault();
+            downloadImg(flat[midx]?.u || $mdl.href);
+        });
+        $mov.addEventListener('click',e=>{ if(e.target===$mov) closeM(); });
+        $mp.addEventListener('click',()=>navM(-1));
+        $mn.addEventListener('click',()=>navM(1));
+        document.addEventListener('keydown',e=>{
+            if(!$mov.classList.contains('open')) return;
+            if(e.key==='Escape') closeM();
+            if(e.key==='ArrowLeft') navM(-1);
+            if(e.key==='ArrowRight') navM(1);
+        });
+        window.addEventListener('scroll',()=>$st.classList.toggle('visible',window.scrollY>500));
+        $st.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+        let tx=0;
+        $mov.addEventListener('touchstart',e=>{tx=e.touches[0].clientX;});
+        $mov.addEventListener('touchend',e=>{ if(Math.abs(tx-e.changedTouches[0].clientX)>60) navM(tx-e.changedTouches[0].clientX>0?1:-1); });
+    }
+
+    // ===== TOAST =====
+    let tt=null;
+    function toast(msg){
+        $toast.textContent=msg; $toast.classList.add('show');
+        if(tt) clearTimeout(tt);
+        tt=setTimeout(()=>$toast.classList.remove('show'),2600);
+    }
+
+    // ===== GO =====
+    init();
+})();
+</script>
+</body>
+</html>
